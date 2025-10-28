@@ -5,22 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Interactive Cat Sketch</title>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
-  <script src="cat.js"></script>
-
   <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
 </head>
 <body>
-  <div class="page">
-    <div class="content">
-      <p>
-        <span class="sentence">A kitten blinks into a moonlit world, belly hollow and heart curious.</span>
-        <span class="sentence">It hears the city’s rumble like a giant purr and smells rain on warm pavement.</span>
-        <span class="sentence">Somewhere there is food, a corner, a hand—maybe kind, maybe not.</span>
-        <span class="sentence">It must choose a beginning.</span>
-        <span class="sentence">Will it try the <a href="Street-1.html">street</a>, an <a href="Apartment-1.html">apartment</a>, or a <a href="BigHouse-1.html">big house</a>?</span>
-      </p>
+
+  <!-- Centered image + canvas stage -->
+  <div
+    id="sketch-holder"
+    style="
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding-top:24px;
+      padding-bottom:4px;
+    "
+  ></div>
+
+  <!-- Sentences + right-side image (page-specific inline layout only) -->
+  <div class="page" style="min-height:auto; display:block; margin-top:8px;">
+    <div class="content" style="max-width:100%; padding-left:24px; padding-right:24px;">
+
+      <!-- side-by-side wrapper (no gap) -->
+      <div style="
+        display:flex;
+        align-items:flex-start;
+        justify-content:flex-start;
+        gap:0;                 /* no gap between columns */
+        flex-wrap:wrap;        /* will stack on very narrow screens */
+      ">
+
+        <!-- left: sentences -->
+        <div style="flex:1 1 300px; min-width:280px;">
+          <p style="margin:0;"> <!-- remove default paragraph margins -->
+            <span class="sentence">A kitten blinks into a moonlit world, belly hollow and heart curious.</span>
+            <span class="sentence">It hears the city’s rumble like a giant purr and smells rain on warm pavement.</span>
+            <span class="sentence">Somewhere there is food, a corner, a hand—maybe kind, maybe not.</span>
+            <span class="sentence">It must choose a beginning.</span>
+            <span class="sentence">Will it try the <a href="Street-1.html">street</a>, an <a href="Apartment-1.html">apartment</a>, or a <a href="BigHouse-1.html">big house</a>?</span>
+          </p>
+        </div>
+
+        <!-- right: homepage.jpg (tiny manual nudge) -->
+        <div style="flex:0 0 auto; margin-left:0;">  <!-- tweak this 0–8px as you like -->
+          <img
+            src="images/homepage.jpg"
+            alt="homepage visual"
+            style="
+              display:block;
+              width:30vw;          /* responsive width */
+              max-width:420px;     /* cap on large screens */
+              height:auto;
+              border-radius:0;   /* optional */
+            "
+          />
+        </div>
+
+      </div>
     </div>
   </div>
+
+  <script src="cat.js"></script>
 </body>
 </html>
