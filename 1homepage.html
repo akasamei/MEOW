@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Interactive Cat Sketch</title>
+  <title>MEOW</title>
 
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
 </head>
 <body>
 
-  <!-- Centered image + canvas stage -->
+
   <div
     id="sketch-holder"
     style="
@@ -22,22 +22,19 @@
     "
   ></div>
 
-  <!-- Sentences + right-side image (page-specific inline layout only) -->
   <div class="page" style="min-height:auto; display:block; margin-top:8px;">
     <div class="content" style="max-width:100%; padding-left:24px; padding-right:24px;">
 
-      <!-- side-by-side wrapper (no gap) -->
       <div style="
         display:flex;
         align-items:flex-start;
         justify-content:flex-start;
-        gap:0;                 /* no gap between columns */
-        flex-wrap:wrap;        /* will stack on very narrow screens */
+        gap:0;
+        flex-wrap:wrap;
       ">
 
-        <!-- left: sentences -->
-        <div style="flex:1 1 300px; min-width:280px;">
-          <p style="margin:0;"> <!-- remove default paragraph margins -->
+        <div style="flex:1 1 520px; min-width:280px; margin-left:30px;">
+          <p style="margin:0;">
             <span class="sentence">A kitten blinks into a moonlit world, belly hollow and heart curious.</span>
             <span class="sentence">It hears the city’s rumble like a giant purr and smells rain on warm pavement.</span>
             <span class="sentence">Somewhere there is food, a corner, a hand—maybe kind, maybe not.</span>
@@ -46,17 +43,16 @@
           </p>
         </div>
 
-        <!-- right: homepage.jpg (tiny manual nudge) -->
-        <div style="flex:0 0 auto; margin-left:0;">  <!-- tweak this 0–8px as you like -->
+        <div style="flex:0 0 auto; margin-left:6px;">
           <img
-            src="images/homepage.jpg"
+            src="images/homepage.png"
             alt="homepage visual"
             style="
               display:block;
-              width:30vw;          /* responsive width */
-              max-width:420px;     /* cap on large screens */
+              width:40vw;        
+              max-width:640px;     
               height:auto;
-              border-radius:0;   /* optional */
+              border-radius:8px;
             "
           />
         </div>

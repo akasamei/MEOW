@@ -1,28 +1,26 @@
-// cat.js — DOM image + transparent p5 canvas overlay for the paw trail
 
-// --- Build a centered stage with <img> and an overlaid canvas ---
 const holder = document.getElementById('sketch-holder');
 
-// Create stage container (relative) so we can absolutely-position the canvas
+
 const stage = document.createElement('div');
 stage.id = 'photo-stage';
 stage.style.position = 'relative';
-stage.style.display = 'inline-block'; // allows centering via #sketch-holder flex
+stage.style.display = 'inline-block'; 
 holder?.appendChild(stage);
 
-// Add the image as a DOM element (NOT drawn in p5)
+
 const photo = new Image();
 photo.id = 'bg-photo';
-photo.src = 'images/meow.jpg'; // <- your file path (can be a full URL too)
+photo.src = 'images/meow.jpg'; 
 photo.alt = 'meow';
-photo.style.display = 'block';   // remove inline gap
+photo.style.display = 'block';   
 stage.appendChild(photo);
 
-// Load the paw source (off-DOM). We'll convert it to pure white.
+
 const pawEl = new Image();
 pawEl.src = 'images/paw.png';
 
-// Offscreen canvas for white paw sprite
+
 let pawWhiteCanvas = null;
 let pawReady = false;
 
@@ -37,7 +35,7 @@ pawEl.onload = () => {
     const p = d.data;
     for (let i = 0; i < p.length; i += 4) {
       const a = p[i + 3];
-      p[i] = 255; p[i + 1] = 255; p[i + 2] = 255; p[i + 3] = a; // force white, keep alpha
+      p[i] = 255; p[i + 1] = 255; p[i + 2] = 255; p[i + 3] = a; 
     }
     ctx.putImageData(d, 0, 0);
     pawWhiteCanvas = can;
@@ -47,42 +45,42 @@ pawEl.onload = () => {
   }
 };
 
-// p5 state
+
 let prints = [];
 let lastPos = null;
 const stepDist = 26, offsetAmt = 12, PAW_SIZE = 36;
 let leftStep = true;
 
-// Create the canvas only after the photo has its natural size
+
 photo.onload = () => {
-  // p5 will call setup() once it loads; we set desired size here
+
   desiredW = photo.naturalWidth;
   desiredH = photo.naturalHeight;
 
-  // If p5 is already set up, resize then re-anchor canvas
+
   if (typeof resizeCanvas === 'function') {
     resizeCanvas(desiredW, desiredH);
     const canv = document.querySelector('#photo-stage canvas');
     if (canv) {
-      // absolute overlay on top of the image
+      
       canv.style.position = 'absolute';
       canv.style.left = '0';
       canv.style.top = '0';
-      canv.style.pointerEvents = 'auto'; // keep mouse tracking on canvas
+      canv.style.pointerEvents = 'auto'; 
     }
   }
 };
 
-// Fallback size in case image fails to load
+
 let desiredW = 800;
 let desiredH = 400;
 
 function setup() {
-  // Create canvas with fallback size; we'll resize when image loads
+
   const c = createCanvas(desiredW, desiredH);
-  // Attach to the same stage so it overlays the image
+ 
   c.parent('photo-stage');
-  // Make the canvas overlay the photo
+
   const canv = c.canvas;
   canv.style.position = 'absolute';
   canv.style.left = '0';
@@ -92,10 +90,10 @@ function setup() {
 }
 
 function draw() {
-  // Keep the canvas transparent and only draw paws
-  clear(); // transparent clear (no background)
 
-  // Place paw prints when mouse moves enough over the canvas
+  clear(); 
+
+
   if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
     if (lastPos === null) lastPos = createVector(mouseX, mouseY);
 
@@ -118,7 +116,7 @@ function draw() {
     lastPos = null;
   }
 
-  // Draw & fade prints
+
   for (let i = prints.length - 1; i >= 0; i--) {
     const p = prints[i];
     drawPaw(p.x, p.y, PAW_SIZE, p.angle, p.alpha);

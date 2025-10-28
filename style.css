@@ -91,32 +91,31 @@ a:active {
 .rebirth a:hover {
     color: lightgray;
 
-/* Center the canvas at the top */
+
 #sketch-holder {
   width: 100%;
   display: flex;
-  justify-content: center;   /* centers canvas horizontally */
+  justify-content: center;  
   align-items: flex-start;
-  padding-top: 24px;         /* space from top of page */
-  padding-bottom: 16px;      /* space above sentences */
+  padding-top: 24px;        
+  padding-bottom: 16px;      
 }
 
-/* Make sure the canvas behaves like a block and can be centered */
 #sketch-holder canvas {
   display: block;
-  max-width: 100%;           /* prevents overflow on small screens */
-  height: auto;              /* keep aspect ratio if you scale */
+  max-width: 100%;         
+  height: auto;              
 }
 
-/* Optional: tighten page spacing since canvas is above now */
+
 .page {
-  min-height: auto;          /* was 100vh; no longer needed */
+  min-height: auto;         
   display: block;
 }
 
 .content {
-  margin: 0 auto;            /* center the paragraph block */
-  max-width: 900px;          /* optional: readable line length */
+  margin: 0 auto;          
+  max-width: 900px;         
   padding-left: 24px;
   padding-right: 24px;
 }
